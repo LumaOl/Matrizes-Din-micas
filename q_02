@@ -1,0 +1,78 @@
+#include <stdio.h>    //bibliotecas
+#include <stdlib.h>
+
+int main(void) {    //funcao principal
+	int n;      //declaracao de variaveis
+  int i, j;      
+  
+  printf("Informe o tamanho da matriz quadrada: ");    //pedindo o tamanho da matriz quadrada
+	scanf("%d", &n);    //recebendo o numero infor mado pelo usuario via teclado
+	
+	int mat[n][n];    //informa que o valor de 'n' sera recebido como linha e coluna
+	
+	for (i = 0; i < n; i++) {    //laco de repeticao para preencher linhas
+		for (j = 0; j < n; j++) {    //laco de repeticao para preencher colunas
+      printf("M[%d][%d]: ", i, j);    
+			scanf("%d", &mat[i][j]);      //lendo e guardando valores da matriz
+		}
+	}
+  printf("\n");     //pular linha
+	    //laco de repeticao para mostrar a matriz quadrada
+	for (i = 0; i < n; i++) {
+		for (j = 0; j < n; j++) {
+			printf("%i ", mat[i][j]);    //mostrar matriz final
+		}
+		printf("\n");      //pular linha
+	}
+  //somaDP: soma da diagonaal princial
+  //somaDS: soma da diagonal secundaria
+	int somaDP = 0, somaDS = 0;     //mostrar que tais valores é igual a zero
+	
+	//soma diagonal principal
+	for (i = 0; i < n; i++) {    //for para percorrer linha principal
+		somaDP += mat[i][i];     //somaDP= somaDP + mat[i][i]
+	}
+	
+	//soma diagonal secundária
+	for (i = 0; i < n; i++) {    //for para percorrer linha principal
+		somaDS += mat[i][n-i-1];    //somaDS= somaDS + mat[i][n-i-1]
+	}
+	
+	//somatorio das linhas
+	printf("\nSoma das linhas: ");
+	int vetL[n];    //vetor Linnha
+	for (i = 0; i < n; i++) {   //laco para percorrer linha
+		vetL[i] = 0;
+		for (j = 0; j < n; j++) {    //laco para percorrer coluna
+			vetL[i] += mat[i][j];   // vetL[i] = vetL[i] + mat[i][j] e somatorio
+		}
+	}
+	for (i = 0; i < n; i++) {
+		printf("%i ", vetL[i]);  //mostrar resultado do somatorio das linhas
+	}
+
+	//somatorio das colunas
+	printf("\nSoma das colunas: ");
+	int vetC[n];    //vetor Coluna
+	for (j = 0; j < n; j++) {    //laco para percorrer coluna
+		vetC[j] = 0;
+		for (i = 0; i < n; i++) {    //laco para percorrer linha
+			vetC[j] += mat[i][j];    // vetC[j] = vetC[j] + mat[i][j] e somatorio
+		}
+	}
+	for (i = 0; i < n; i++) {
+		printf("%i ", vetC[i]);    //mostrar resultado do somatorio das linhas
+	}
+	//mostrar os valores das somas de ambas as diagonais
+	printf("\nSoma diagonal principal %i e secundária %i\n", somaDP, somaDS);
+    //declaracao de variavel
+	int testaL = 1, testaC = 1;
+	if (testaL && testaC && somaDP == somaDS && somaDP == vetL[0]) {    //loco para identificar se a matriz e ou nao magica
+		printf("Quadrado magico");
+	} else {
+		printf("Quadrado nao magico");
+	}
+
+  //finalizar codigo
+	return 0;
+}  //fim
