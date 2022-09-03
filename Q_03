@@ -1,0 +1,45 @@
+#include<stdio.h>    //bibliotecas
+#include<locale.h>
+#include<stdlib.h>
+
+int posicao(int matriz, int n, int m, int p){    //funcao secundaria
+	int i, j;    //declaracao de variaveis
+
+  //loop de repeticao para que percorra a matriz 
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			if(matriz==p){  //caso valores seja igual que tem na matriz return 1
+				return 1; 
+			}
+		}
+	}
+	return 0; //caso contrario, return 0
+} //fim
+
+int main(void){    //funcao principal
+	int i, j;      //declaracao de variaveis
+  int n, m, p;
+  int *matriz;
+  
+	printf("Informe as dimensões da matriz: ");    //pedindo ao usuario que informe o tamanho de linhas e colunas
+	scanf("%d %d", &n, &m);    //ler e guarda tamanho do s valores
+	
+	matriz=(int*)malloc(n*m*sizeof(int));    //funcao para abrir espaco na memoria
+
+	for(i=0;i<n;i++){    //percorrer linha e coluna para preencher matriz
+		for(j=0;j<m;j++){
+			printf("Matriz[%d][%d]: ", i, j);    //pedindo valor para matriz
+			scanf("%d", &matriz);    //ler e guardar valores da matriz
+		}
+	}
+//pilar linha
+printf("\n");
+int d=posicao(matriz, n, m, 6); //mostra que a posicao vai ser igual a d
+	for(i=0;i<n;i++){  
+		for(j=0;j<m;j++){
+			printf("Resultado:%d \n", d);    //mostrar resultado final
+	}
+}
+  free(matriz);    //libera espaço da memoria que foi armazenado
+return 0;    //enceramento de codigo
+} //fim
