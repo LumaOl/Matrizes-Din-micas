@@ -1,0 +1,86 @@
+#include <stdio.h>          //bibliotecas
+#include <stdlib.h>
+
+void soma_mats(int mat1[2][2], int mat2[2][2], int mat3[2][2]){     //funcao secundaria
+    int i,j;        //declaração de variaveis de contadores
+    
+    printf("Soma das matrizes:\n");
+    for(i=0; i<2;i++){      //laço para percorrer as valores nas linhas
+        for(j=0; j<2;j++){      //laço para percorrer as valores nas colunas
+            mat3[i][j] = mat1[i][j] + mat2[i][j];       //somatorio das matrizes 1 e 2
+        }
+    }
+}   //fim
+
+void subtracao_mats(int mat1[2][2], int mat2[2][2], int mat3[2][2]){        //funcao secundaria
+    int i,j;    //declaração de variaveis de contadores
+    
+    printf("Subtração das matrizes:\n");
+    for(i=0; i<2;i++){      //laço para percorrer as valores nas linhas
+        for(j=0; j<2;j++){      //laço para percorrer as valores nas colunas
+            mat3[i][j] = mat1[i][j] - mat2[i][j];       //subtração das matrizes 1 e 2
+        }
+    }
+}   //fim
+
+void multiplicacao_mats(int mat1[2][2], int mat2[2][2], int mat3[2][2]){        //funcao secundaria
+    int i,j;    //declaração de variaveis de contadores
+    
+    printf("Multiplicação das matrizes:\n");
+    for(i=0; i<2;i++){      //laço para percorrer as valores nas linhas
+        for(j=0; j<2;j++){      //laço para percorrer as valores nas colunas
+            mat3[i][j] = mat1[i][j] * mat2[i][j];       //multiplicação das matrizes 1 e 2
+        }
+    }
+}   //fim
+
+void escrever_mats(int mat1[2][2], int mat2[2][2], int mat3[2][2]){  //função secundaria
+    int i, j;       //declaração de variaveis de contadores
+    
+    for(i=0; i<2;i++){      //laço para percorrer as valores nas linhas
+        for(j=0; j<2;j++){      //laço para percorrer as valores nas colunas
+            printf("R: Matriz 3[%d][%d]= %d\n ", i,j, mat3[i][j]);      //mostrar matriz indepedente da operação
+        }
+    }
+}   //fim
+
+int main(void){     //função principal
+    int mat1 [2][2], mat2 [2][2], mat3[2][2];       //declaração de variaveis
+    int *m1, *m2, *m3;    
+    int i, j;       
+    
+    m1 = (int*) malloc(2*2*sizeof(int));        //abrir memoria para matriz 1
+    m2 = (int*) malloc(2*2*sizeof(int));        //abrir memoria para matriz 2
+    m3 = (int*) malloc(2*2*sizeof(int));        //abrir memoria para matriz 3
+    
+    printf("\n");       //preenchendo valores para matriz 1
+    for(i=0; i<2; i++){
+        for(j=0; j<2; j++){
+            printf("Matriz 1[%d][%d]:", i, j);
+            scanf("%d", &mat1[i][j]);
+        }
+    }
+    
+    printf("\n");       //preenchendo valores para matriz 2
+    for(i=0; i<2; i++){
+        for(j=0; j<2; j++){
+             printf("Matriz 2[%d][%d]:", i, j);
+            scanf("%d", &mat2[i][j]);
+        }
+    }
+    printf("\n");
+    soma_mats(mat1, mat2, mat3);        //chamar função somatorio
+    escrever_mats(mat1, mat2, mat3);        //mostrar resultaado da operação
+    printf("\n");
+    subtracao_mats(mat1, mat2, mat3);       //chamar função subtração
+    escrever_mats(mat1, mat2, mat3);        //mostrar resultaado da operação
+    printf("\n");
+    multiplicacao_mats(mat1, mat2, mat3);       //chamar função multiplicação
+    escrever_mats(mat1, mat2, mat3);        //mostrar resultaado da operação
+    
+    free(m1);       //liberar memoria da matriz 1
+    free(m2);       //liberar memoria da matriz 2
+    free(m3);       //liberar memoria da matriz 3
+    
+    return 0;       //finalizar
+}   //fim
